@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block main %}
+<div class="row my-3">
+    <div class="col-md-12 bg-light p-5 text-center">
+        <h1>Welcome To GeekMe!</h1>
+    </div>
+</div>
+
+<div class="container my-3">
+    <div class="jumbotron">
+        <p class="lead fw-bold">Welcome to a digital sanctuary for avid readers, where every page holds a new adventure. Discover a world of knowledge, inspiration, and stories on our blog platform. Unleash your curiosity and explore captivating articles written by experts in their fields.</p>
+        <hr class="my-4">
+        <small class="lead fw-bold">Let our blog be your gateway to inspiration, where ideas bloom and perspectives flourish. Engage with a diverse community of thinkers, dreamers, and storytellers, all on one captivating platform.</small>
+        {% comment %} <a class="btn btn-primary btn-lg" href="/blog" role="button">Go to Blogs</a> {% endcomment %}
+        <p class="my-5"><a href="/blog">Go to Blogs</a></p>
+    </div>
+</div>
+
+{% endblock %}
