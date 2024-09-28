@@ -1,26 +1,39 @@
 {% extends 'layouts/base.html' %}
 {% block main %}
 <div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <a href="{% url 'blog-create' %}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create a new blog</a>
-        <!-- <h1 class="m-0">{{ title }}</h1> -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
     </div>
+    {% endif %}
+
+    <h1 class="text-center mb-4">{{ title }}</h1>
 
     <div class="row">
         {% for blog in blogs %}
         <div class="col-md-4 mb-4">
-            <div class="card shadow-sm h-100 d-flex flex-column">
+            <div class="card shadow-sm h-100">
                 {% if blog.image %}
                 <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}">
                 {% endif %}
                 <div class="card-body d-flex flex-column">
-                    <h4 class="card-title">{{ blog.title }}</h4>
+                    <h4 class="card-title">
+                        <a href="{% url 'blog-view' blog.id %}" class="text-dark">{{ blog.title }}</a>
+                    </h4>
                     <small class="text-muted">{{ blog.datetime }}</small>
                     <p class="card-text mt-2 flex-grow-1">
                         {{ blog.description|truncatewords:30 }}
                     </p>
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                        <a href="{% url 'blog-edit' blog.id %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                        <a href="{% url 'blog-view' blog.id %}" class="btn btn-sm btn-primary">Read More</a>
+                        <a href="{% url 'blog-edit' blog.id %}" class="btn btn-sm btn-secondary"><i class="fas fa-edit"></i> Edit</a>
                         <a href="{% url 'blog-delete' blog.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                     </div>
                 </div>
@@ -29,10 +42,14 @@
         {% empty %}
         <div class="col-12">
             <div class="alert alert-info text-center" role="alert">
-                No blogs available.
+                No blogs available. <a href="{% url 'blog-create' %}" class="alert-link">Create a new blog</a>.
             </div>
         </div>
         {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'blog-create' %}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create a new blog</a>
     </div>
 </div>
 {% endblock %}
