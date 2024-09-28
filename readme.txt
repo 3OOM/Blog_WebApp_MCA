@@ -1,65 +1,110 @@
-Install Virtual Envrionment
-    pip install virtualenvwrapper-win
+# Blog Application - Django with MySQL
 
-Create Virtual Envrionment
-    mkvirtualenv name_of_venv
+This project is a basic blog application built using Django with a MySQL database. The application includes several core features such as user signup, login, and basic blog functionalities like adding, editing, and managing blog posts. Please note that I am still working on implementing advanced features like admin and user login, as well as authorization for different user roles.
 
-Get in to Virtual Envrionment
-    workon name_of_venv
+## Setup Instructions
 
-Install Django in Virtual Envrionment
-    pip install django
+### 1. Install Virtual Environment
+To manage dependencies efficiently, set up a virtual environment using the following commands:
 
-Create Django project
-    django-admin startproject name_of_project
+```bash
+pip install virtualenvwrapper-win
+mkvirtualenv name_of_venv
+```
 
-To run the project
-    Get into name_of_project dir and then run the following command
-        python manage.py runserver
+Activate the environment:
 
+```bash
+workon name_of_venv
+```
 
-Django application are divided into various modules which are said to be as "APPS"
-    -   account
-            - login
-            - signup
-    -   home
-            - home
-            - about
-            - contact
+### 2. Install Django
+After activating the virtual environment, install Django:
 
-Create an "APP"
-    -    python manage.py startapp name_of_app
+```bash
+pip install django
+```
 
+### 3. Create a Django Project
+Generate a new Django project by running:
 
-Setting up MYSQL Database
-    Install XAMPP
-    Start Apache & MYSQL from XAMPP Control Panel
-    Goto http://localhost/phpmyadmin in your browser
-    Create a new database with the name as "blog_app"
+```bash
+django-admin startproject name_of_project
+```
 
-Setup MYSQL database in Django:
-    In settings.py, add configuration for above database.
+To run the project:
 
-Install MYSQL Client for DJango:
-    pip install mysqlclient
+```bash
+cd name_of_project
+python manage.py runserver
+```
 
-Create a migration
-    python manage.py makemigrations
+### 4. Django Applications (Apps)
+The project is modularized into various apps for better organization:
 
-Migrate the model
-    python manage.py migrate
+- **Account**
+  - Login
+  - Signup
+- **Home**
+  - Home Page
+  - About
+  - Contact
 
+To create a new app:
 
----------------------------------------------------------------------
-To Work with images in python, install the following library first
-pip install Pillow
+```bash
+python manage.py startapp name_of_app
+```
 
-Then, make changes in database
+### 5. Setting Up MySQL Database
+
+1. Install [XAMPP](https://www.apachefriends.org/index.html) for MySQL.
+2. Start Apache & MySQL using the XAMPP Control Panel.
+3. Access [phpMyAdmin](http://localhost/phpmyadmin) to create a database named `blog_app`.
+4. In your Django project, configure the database connection in `settings.py` under `DATABASES`.
+
+### 6. Install MySQL Client for Django
+To integrate Django with MySQL, install the MySQL client library:
+
+```bash
+pip install mysqlclient
+```
+
+### 7. Migrations
+
+Generate and apply migrations to set up the database schema:
+
+```bash
 python manage.py makemigrations
 python manage.py migrate
+```
 
-Task:
-    01: Edit blog, check for image as well.
-    02: Reamining forms, bootstrap apply
-    03. Add new pages/urls/views to the project as per your need
-    04. About => Mention about yourself with your image and signature on it
+### 8. Working with Images
+
+For image handling, install the Pillow library:
+
+```bash
+pip install Pillow
+```
+
+After that, apply the necessary database migrations:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+## Current Tasks
+
+- **Edit Blog**: Implement editing functionality, including image handling.
+- **Forms**: Apply Bootstrap to remaining forms for improved UI.
+- **Pages**: Add additional pages, URLs, and views as needed.
+- **About Page**: Include personal details, an image, and a signature.
+
+---
+
+### Features Under Development
+
+- **Admin & User Login**: A robust admin and user login system with role-based access control.
+- **User Authorization**: Implement user permissions and access controls for managing blogs and user accounts.
+
